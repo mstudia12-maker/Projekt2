@@ -1,2 +1,2 @@
--r ../backend/requirements.txt
-streamlit>=1.28.0
+# Użyj pliku w katalogu głównym (tam jest Streamlit + backend).
+-r ../requirements.txt

@@ -1,8 +1,9 @@
 """
 Demand Forecast Lab — Streamlit UI.
+
 Uruchom z katalogu głównego projektu:
-  pip install -r streamlit_app/requirements.txt
-  streamlit run streamlit_app/app.py
+  py -m pip install -r requirements.txt
+  py -m streamlit run streamlit_app/app.py
 """
 
 from __future__ import annotations

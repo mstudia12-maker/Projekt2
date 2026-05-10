@@ -34,7 +34,11 @@ Aplikacja_4/
 ├── frontend/                       # Next.js dashboard
 ├── streamlit_app/                  # alternatywne UI (Streamlit)
 │   ├── app.py
-│   └── requirements.txt
+│   └── requirements.txt            # wskazuje na ../requirements.txt
+├── requirements.txt                 # zależności główne (wdrożenie Cloud + lokalnie Streamlit)
+├── packages.txt                     # apt (Streamlit Cloud): libgomp1 dla LightGBM
+├── .streamlit/
+│   └── config.toml
 └── README.md
 ```
 
@@ -107,15 +111,27 @@ Otwórz [http://localhost:3000](http://localhost:3000) (lub port wskazany przez 
 
 ## UI Streamlit (bez FastAPI i bez Node)
 
-Ta sama logika ML co w `backend/app/services/`, interfejs w jednym procesie Python:
+Ta sama logika ML co w `backend/app/services/`, interfejs w jednym procesie Python.
+
+**Instalacja (z katalogu głównego repozytorium):**
 
 ```powershell
 cd C:\Users\admin\Desktop\Aplikacja_4
-py -m pip install -r streamlit_app/requirements.txt
+py -m pip install -r requirements.txt
 py -m streamlit run streamlit_app/app.py
 ```
 
 Aplikacja domyślnie: [http://localhost:8501](http://localhost:8501). Pliki AFG szuka w katalogu głównym projektu (jak backend).
+
+### Wdrożenie na Streamlit Community Cloud ([share.streamlit.io](https://share.streamlit.io))
+
+1. Wypchnij na GitHub **całe** repozytorium (w tym `backend/`, `streamlit_app/`, **`requirements.txt` w katalogu głównym**, `packages.txt`, `.streamlit/config.toml`).
+2. **New app** → wybierz repo i gałąź (np. `main`).
+3. **Main file path:** `streamlit_app/app.py`
+4. W **Advanced settings** ustaw **Python 3.11** (zalecane dla CatBoost / LightGBM).
+5. Cloud sam uruchomi `pip install -r requirements.txt` z **korzenia** repo — dlatego główny `requirements.txt` jest obowiązkowy (sam plik w `streamlit_app/` nie wystarczy).
+6. Przycisk „AFG z projektu” działa tylko wtedy, gdy pliki CSV AFG są **w repozytorium** w katalogu głównym; w innym razie użyj **Wgraj CSV** w aplikacji.
+7. Darmowy plan ma **ograniczoną pamięć** — duży backtest może się nie zmieścić; wtedy zmniejsz dane lub uruchom lokalnie.
 
 ## Modelowanie i metryki
 

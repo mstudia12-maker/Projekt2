@@ -1,0 +1,4 @@
+# Główny plik zależności — wymagany m.in. przez Streamlit Community Cloud (pip z katalogu repo).
+# Lokalnie: py -m pip install -r requirements.txt
+-r backend/requirements.txt
+streamlit>=1.28.0
