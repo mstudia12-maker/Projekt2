@@ -4,7 +4,7 @@ Aplikacja webowa do **porównywania algorytmów prognozowania kwantylowego** (P5
 
 ## Stack
 
-- **Frontend:** Next.js 14 (React), Tailwind CSS  
+- **Frontend:** Next.js 14 (React), Tailwind CSS (+ opcjonalnie **Streamlit** jako alternatywne UI)  
 - **Backend:** Python 3.10–3.12 (zalecane), FastAPI  
 - **ML:** pandas, NumPy, scikit-learn (Gradient Boosting Quantile), CatBoost, LightGBM  
 
@@ -32,6 +32,9 @@ Aplikacja_4/
 │   ├── generate_sample_data.py
 │   └── requirements.txt
 ├── frontend/                       # Next.js dashboard
+├── streamlit_app/                  # alternatywne UI (Streamlit)
+│   ├── app.py
+│   └── requirements.txt
 └── README.md
 ```
 
@@ -101,6 +104,18 @@ npm run dev
 ```
 
 Otwórz [http://localhost:3000](http://localhost:3000) (lub port wskazany przez Next).
+
+## UI Streamlit (bez FastAPI i bez Node)
+
+Ta sama logika ML co w `backend/app/services/`, interfejs w jednym procesie Python:
+
+```powershell
+cd C:\Users\admin\Desktop\Aplikacja_4
+py -m pip install -r streamlit_app/requirements.txt
+py -m streamlit run streamlit_app/app.py
+```
+
+Aplikacja domyślnie: [http://localhost:8501](http://localhost:8501). Pliki AFG szuka w katalogu głównym projektu (jak backend).
 
 ## Modelowanie i metryki
 
